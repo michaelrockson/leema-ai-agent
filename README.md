@@ -1,4 +1,4 @@
-# Problem-Identification-Agent
+# Leema-Identification-Agent
 
 An AI Agent responsible for gathering Reddit discussions, analyzing the sentiments of the posts, validating the opportunities with Gemini and finally, creating structured problem briefs.
 
@@ -28,8 +28,8 @@ The agent runs a four-stage pipeline:
 Clone the repository:
 
    ```bash
-   git clone https://github.com/michaelrockson/Problem-Identification-Agent.git
-   cd Problem-Identification-Agent
+   git clone https://github.com/michaelrockson/Leema-Identification-Agent.git
+   cd Leema-Identification-Agent
    ```
 
 Run the setup script:
@@ -40,8 +40,8 @@ Run the setup script:
    ```
 
 ```bash
-git clone https://github.com/michaelrockson/Market-Research-Agent.git
-cd Reddit-Mine
+git clone https://github.com/michaelrockson/Leema-Identification-Agent.git
+cd Leema-Identification-Agent 
 ```
 
 ### Option 2. Manual Setup
