@@ -1,6 +1,6 @@
 # Leema-Identification-Agent
 
-An AI Agent responsible for gathering Reddit discussions, analyzing the sentiments of the posts, validating the opportunities with Gemini and finally, creating structured problem briefs.
+Leema is an AI research agent that discovers, validates and prioritises customer problems from online conversations, helping founders and businesses build products people actually need.
 
 ## How It Works
 
