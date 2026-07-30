@@ -1,4 +1,4 @@
-# Leema-Identification-Agent
+# Leema-AI-Agent
 
 Leema is an AI research agent that discovers, validates and prioritises customer problems from online conversations, helping founders and businesses build products people actually need.
 
@@ -28,8 +28,8 @@ The agent runs a four-stage pipeline:
 Clone the repository:
 
    ```bash
-   git clone https://github.com/michaelrockson/Leema-Identification-Agent.git
-   cd Leema-Identification-Agent
+   git clone https://github.com/michaelrockson/Leema-AI-Agent.git
+   cd Leema-AI-Agent
    ```
 
 Run the setup script:
@@ -40,8 +40,8 @@ Run the setup script:
    ```
 
 ```bash
-git clone https://github.com/michaelrockson/Leema-Identification-Agent.git
-cd Leema-Identification-Agent 
+git clone https://github.com/michaelrockson/Leema-AI-Agent.git
+cd Leema-AI-Agent 
 ```
 
 ### Option 2. Manual Setup
