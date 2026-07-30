@@ -28,8 +28,8 @@ The agent runs a four-stage pipeline:
 Clone the repository:
 
    ```bash
-   git clone https://github.com/michaelrockson/Leema-AI-Agent.git
-   cd Leema-AI-Agent
+   git clone https://github.com/michaelrockson/leema-ai-agent.git
+   cd leema-ai-agent
    ```
 
 Run the setup script:
@@ -40,8 +40,8 @@ Run the setup script:
    ```
 
 ```bash
-git clone https://github.com/michaelrockson/Leema-AI-Agent.git
-cd Leema-AI-Agent 
+git clone https://github.com/michaelrockson/leema-ai-agent.git
+cd leema-ai-agent
 ```
 
 ### Option 2. Manual Setup
