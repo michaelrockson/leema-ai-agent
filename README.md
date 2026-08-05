@@ -39,11 +39,6 @@ Run the setup script:
    ./setup.sh
    ```
 
-```bash
-git clone https://github.com/michaelrockson/leema-ai-agent.git
-cd leema-ai-agent
-```
-
 ### Option 2. Manual Setup
 
 Clone the repository and navigate to the directory.
