@@ -4,11 +4,11 @@ import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVal
 
 export default function FindingsSelect() {
 
-    const { saveOptions } = useFindingsTable();
+    const {saveOptions} = useFindingsTable();
 
-    return <Select items={saveOptions} >
+    return <Select items={saveOptions}>
         <SelectTrigger className="px-5 py-5 w-4/5">
-            <SelectValue placeholder="Select an option" />
+            <SelectValue placeholder="Select an option"/>
         </SelectTrigger>
         <SelectContent>
             <SelectGroup>

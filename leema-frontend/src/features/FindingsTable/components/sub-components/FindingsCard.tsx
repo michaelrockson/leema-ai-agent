@@ -7,7 +7,7 @@ const tagStyles = {
     neutral: "bg-primary-100 text-primary-800 px-2 py-1 text-sm font-semibold rounded-xs text-xs",
 }
 
-export default function FindingsCard({ title, feasibility, tag, description, source }: FindingDataProps) {
+export default function FindingsCard({title, feasibility, tag, description, source}: FindingDataProps) {
     return (
         <Card className="px-6">
             <CardTitle>

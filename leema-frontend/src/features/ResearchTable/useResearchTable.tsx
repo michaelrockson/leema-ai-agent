@@ -40,5 +40,5 @@ const stages: Stages[] = [
 
 
 export default function useResearchTable() {
-    return { stages };
+    return {stages};
 }
