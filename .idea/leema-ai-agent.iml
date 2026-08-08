@@ -6,6 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/Agent_Api/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/Agent_Backend/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/backend/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/leema-backend/.venv" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.13" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
