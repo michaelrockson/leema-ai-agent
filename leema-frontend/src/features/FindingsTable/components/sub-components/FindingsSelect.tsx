@@ -1,4 +1,4 @@
-import useFindingsTable from "@/features/FindingsTable/useFindingsTable.tsx";
+import useFindingsTable from "@/features/FindingsTable/hooks/useFindingsTable.tsx";
 import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
 
 

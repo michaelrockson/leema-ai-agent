@@ -1,9 +1,12 @@
 import {Button} from "@/components/ui/button.tsx";
-import FindingsSelect from "@/features/FindingsTable/FindingsSelect.tsx";
+import FindingsSelect from "@/features/FindingsTable/components/sub-components/FindingsSelect.tsx";
 import {Card, CardContent, CardHeader} from "@/components/ui/card.tsx";
-import {FindingsTabs} from "@/features/FindingsTable/FindingsTabs.tsx";
+import {FindingsTabs} from "@/features/FindingsTable/components/sub-components/FindingsTabs.tsx";
+import useFindingsTable from "@/features/FindingsTable/hooks/useFindingsTable.tsx";
 
 export default function FindingsTable() {
+
+    const { findingData } = useFindingsTable();
 
     return (
         <div className="container mx-auto py-12">
@@ -16,7 +19,7 @@ export default function FindingsTable() {
                     </div>
                 </CardHeader>
                 <CardContent>
-                    <FindingsTabs />
+                    <FindingsTabs findingData={findingData} />
                 </CardContent>
             </Card>
         </div>

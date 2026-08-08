@@ -2,6 +2,7 @@ import {Button} from "@/components/ui/button.tsx";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card.tsx";
 import useResearchTable, {type Stages} from "@/features/ResearchTable/useResearchTable.tsx";
 import {Checkbox} from "@/components/ui/checkbox.tsx";
+import {CheckIcon} from "lucide-react";
 
 
 function provideResearchStages({researchStages}: { researchStages: Stages[] }) {
@@ -19,7 +20,7 @@ function provideResearchStages({researchStages}: { researchStages: Stages[] }) {
                         </div>
                     </div>
                     <div className="px-4">
-                        <span>{stage.status}</span>
+                        <span><CheckIcon className="bg-green-600 text-white rounded-xl size-7 px-1 py-1"/></span>
                     </div>
                 </div>
             );

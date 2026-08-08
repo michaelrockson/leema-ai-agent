@@ -1,5 +1,5 @@
 import {Card, CardContent, CardDescription, CardTitle} from "@/components/ui/card.tsx";
-
+import type {FindingDataProps} from "@/features/FindingsTable/hooks/useFindingsTable.tsx";
 
 const tagStyles = {
     positive: "bg-green-100 text-green-800 px-2 py-1 text-sm font-semibold rounded-xs text-xs",
@@ -7,24 +7,23 @@ const tagStyles = {
     neutral: "bg-primary-100 text-primary-800 px-2 py-1 text-sm font-semibold rounded-xs text-xs",
 }
 
-export default function FindingsCard() {
+export default function FindingsCard({ title, feasibility, tag, description, source }: FindingDataProps) {
     return (
         <Card className="px-6">
             <CardTitle>
-                <h4>Automated Multi-Currency Stripe Reconciliation Tool</h4>
+                <h4>{title}</h4>
             </CardTitle>
             <div className="flex justify-start gap-2">
                 <CardDescription className={tagStyles.positive}>
-                    <span>High Feasibility</span>
+                    <span>{feasibility}</span>
                 </CardDescription>
                 <CardDescription className={tagStyles.negative}>
-                    <span>Activity Log</span>
+                    <span>{tag}</span>
                 </CardDescription>
             </div>
-            <CardContent className="-px-2 text-muted-foreground flex flex-col gap-4">
-                <span>A streamlined integration that automatically maps multi-currency Stripe payments to accounting software without manual adjustments.
-                </span>
-                <span className="text-caption">Synthesized from 12 community discussions</span>
+            <CardContent className="text-muted-foreground flex flex-col gap-4">
+                <span>{description}</span>
+                <span className="text-caption">{source}</span>
             </CardContent>
         </Card>
     );
