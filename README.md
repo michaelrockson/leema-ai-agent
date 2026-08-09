@@ -8,7 +8,7 @@ Leema is an AI research agent that discovers, validates, and prioritizes custome
 ```
 leema-ai-agent/
 ├── leema-backend/     # Python AI agent — pipeline, services, API
-└── leema-frontend/    # React + TypeScript + Vite dashboard
+└── leema-frontend/    # React + TypeScript + Vite web frontend layer
 ```
 
 ## How It Works
