@@ -196,8 +196,6 @@ leema-frontend/
 └── package.json
 ```
 
----
-
 ## Tech Stack
 
 | Layer | Technology |
