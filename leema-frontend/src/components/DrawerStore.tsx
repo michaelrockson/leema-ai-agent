@@ -3,7 +3,6 @@ import {
     Drawer,
     DrawerClose,
     DrawerContent,
-    DrawerDescription,
     DrawerFooter,
     DrawerHeader,
     DrawerTitle,
@@ -17,7 +16,6 @@ type DrawerStore = {
     button: React.ComponentType<ButtonProps>;
     ButtonLabel: string | React.ComponentType<{ size?: number; color?: string }> | React.ReactElement;
     drawerTitle: string;
-    drawerDescription: string;
     drawerContent: React.ReactElement | null;
     drawerSaveButtonLabel: string;
     drawerCancelButtonLabel: string;
@@ -36,11 +34,10 @@ export default function DrawerStore({drawerProps}: { drawerProps: DrawerStore })
         <Drawer swipeDirection="right">
             <DrawerTrigger> {renderButtonLabel()}</DrawerTrigger>
             <DrawerContent>
-                <DrawerHeader>
+                <DrawerHeader className="border-b py-4">
                     <DrawerTitle><h3>{drawerProps.drawerTitle}</h3></DrawerTitle>
-                    <DrawerDescription>{drawerProps.drawerDescription}</DrawerDescription>
                 </DrawerHeader>
-                <div className="p-4">{drawerProps.drawerContent}</div>
+                <div className="flex-1 overflow-y-auto p-4">{drawerProps.drawerContent}</div>
                 <DrawerFooter>
                     <Button>{drawerProps.drawerSaveButtonLabel}</Button>
                     <DrawerClose render={<Button variant="outline"/>}> {drawerProps.drawerCancelButtonLabel} </DrawerClose>
