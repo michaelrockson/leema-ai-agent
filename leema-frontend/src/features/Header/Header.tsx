@@ -1,5 +1,6 @@
 import {Button} from "@/components/ui/button.tsx";
 import {Settings} from "lucide-react";
+import DrawerStore from "@/components/DrawerStore.tsx";
 
 export default function Header() {
     return (
@@ -13,7 +14,16 @@ export default function Header() {
             </div>
 
             <Button variant="secondary" className="py-5 px-3 border-b border-accent">
-                <Settings className="size-5"/>
+                <DrawerStore drawerProps={{
+                    button: Button,
+                    ButtonLabel: <Settings className="size-5"/>,
+                    drawerTitle: "Settings",
+                    drawerDescription: "Manage your account settings",
+                    drawerContent: null,
+                    drawerSaveButtonLabel: "Save Changes",
+                    drawerCancelButtonLabel: "Cancel"
+                }} />
+
             </Button>
         </div>
     );
