@@ -12,6 +12,16 @@ dist
 dist-ssr
 *.local
 
+# npm lockfile (using yarn instead)
+package-lock.json
+
+# Yarn Berry — ignore PnP and cache, but keep yarn.lock
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
