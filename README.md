@@ -1,4 +1,4 @@
-# Leema AI Agent
+# Leema-AI-Agent
 
 Leema is an AI research agent that discovers, validates, and prioritizes customer problems from online conversations helping founders and businesses build products people actually need.
 
