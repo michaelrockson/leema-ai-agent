@@ -1,4 +1,3 @@
-
 type SaveOptions = {
     label: string;
     value: string;
@@ -57,5 +56,5 @@ const findingData: FindingDataProps[] = [
 
 
 export default function useFindingsTable() {
-    return { saveOptions, findingData };
+    return {saveOptions, findingData};
 }

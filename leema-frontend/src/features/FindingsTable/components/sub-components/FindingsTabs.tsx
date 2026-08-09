@@ -6,7 +6,7 @@ type FindingsTabsProps = {
     findingData: FindingDataProps[];
 };
 
-export function FindingsTabs({ findingData }: FindingsTabsProps) {
+export function FindingsTabs({findingData}: FindingsTabsProps) {
     return (
         <Tabs className="flex flex-col" defaultValue="findings">
             <TabsList variant="line" className="divide-y">
