@@ -152,8 +152,6 @@ The following secrets should be configured in your Infisical project (or directl
 | `RECIPIENT_ADDRESS` | Report recipient email |
 | `DATABASE_URL` | SQLAlchemy database connection URL |
 
----
-
 ## Backend Structure
 
 ```
