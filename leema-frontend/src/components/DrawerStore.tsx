@@ -48,12 +48,18 @@ export default function DrawerStore({
         <div className="flex-1 overflow-y-auto p-4">
           {drawerProps.drawerContent}
         </div>
-        <DrawerFooter className="flex jus">
-          <Button>{drawerProps.drawerSaveButtonLabel}</Button>
-          <DrawerClose render={<Button variant="outline" />}>
-            {" "}
-            {drawerProps.drawerCancelButtonLabel}{" "}
-          </DrawerClose>
+        <DrawerFooter>
+          <div className="flex justify-end gap-4">
+            <Button className="px-6 py-6">
+              {drawerProps.drawerSaveButtonLabel}
+            </Button>
+            <DrawerClose
+              render={<Button variant="outline" className="px-6 py-6" />}
+            >
+              {" "}
+              {drawerProps.drawerCancelButtonLabel}{" "}
+            </DrawerClose>
+          </div>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

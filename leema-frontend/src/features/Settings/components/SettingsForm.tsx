@@ -95,15 +95,15 @@ export default function SettingsForm() {
           <FieldLabel htmlFor="repliesPerConversation">
             {settingsContent.settingsConCountTitle.replyTitle}
           </FieldLabel>
-          <FieldDescription>
-            {settingsContent.settingsConCountTitle.replyDescription}
-          </FieldDescription>
           <Input
             id="repliesPerConversation"
             type="number"
             min={1}
             placeholder="10"
           />
+          <FieldDescription>
+            {settingsContent.settingsConCountTitle.replyDescription}
+          </FieldDescription>
         </Field>
 
         <FieldLegend>
