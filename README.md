@@ -1,79 +1,85 @@
-# Leema-AI-Agent
+# Leema AI Agent
 
-Leema is an AI research agent that discovers, validates and prioritises customer problems from online conversations, helping founders and businesses build products people actually need.
+Leema is an AI research agent that discovers, validates, and prioritizes customer problems from online conversations helping founders and businesses build products people actually need.
+
+
+## Repository Structure
+
+```
+leema-ai-agent/
+├── leema-backend/     # Python AI agent — pipeline, services, API
+└── leema-frontend/    # React + TypeScript + Vite dashboard
+```
 
 ## How It Works
 
-The agent runs a four-stage pipeline:
+The agent runs a five-stage pipeline:
 
-- Scout: Searches Reddit for potential pain points and uses an agent to validate software solvability before anything
-  is stored.
-- Ingress: Fetches full posts and comments for every approved submission ID.
-- Sentiment: Normalizes text, filters noise, and runs VADER scoring to validate signal strength.
-- Curation: Runs structured Gemini prompts to identify recurring problems and package them as problem briefs.
-- Egress: Persists briefs to the database and exports to configured sinks (Notion / Email).
+| Stage | Description |
+|---|---|
+| **Scout** | Searches Reddit for pain points and validates software solvability before anything is stored |
+| **Ingress** | Fetches full posts and comments for every approved submission |
+| **Sentiment** | Normalises text, filters noise, and runs VADER scoring to validate signal strength |
+| **Curation** | Runs structured Gemini prompts to identify recurring problems and package them as problem briefs |
+| **Egress** | Persists briefs to the database and exports to configured sinks (Notion / Email) |
+
 
 ## Prerequisites
 
-- Python 3.11+ (tested with 3.13)
+- **Backend**: Python 3.11+ (tested with 3.13)
+- **Frontend**: Node.js 18+, Yarn 4+
 - A Reddit app (client ID & secret)
 - A Gemini API key (Google LLM)
-- An [Infisical](https://infisical.com) project with secrets configured
-- Optional: Notion integration + Email credentials
+- An [Infisical](https://infisical.com) project with secrets configured *(recommended)*
+- Optional: Notion integration + email credentials
 
-## Install
 
-### Option 1. Automated Setup (Recommended)
+## Getting Started
 
-Clone the repository:
+### 1. Clone the Repository
 
-   ```bash
-   git clone https://github.com/michaelrockson/leema-ai-agent.git
-   cd leema-ai-agent
-   ```
+```bash
+git clone https://github.com/michaelrockson/leema-ai-agent.git
+cd leema-ai-agent
+```
 
-Run the setup script:
+### 2. Backend Setup
 
-   ```bash
-   chmod +x ./setup.sh
-   ./setup.sh
-   ```
+Navigate to the backend directory:
 
-### Option 2. Manual Setup
+```bash
+cd leema-backend
+```
 
-Clone the repository and navigate to the directory.
-Create and activate a virtual environment:
+**Option A Automated Setup (Recommended)**
 
-   ```bash
-   python -m venv .venv
-   # Windows
-   source .venv/Scripts/activate
-   # macOS/Linux
-   source .venv/bin/activate
-   ```
+```bash
+chmod +x ./setup.sh
+./setup.sh
+```
 
-Install dependencies:
+**Option B Manual Setup**
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+# Create and activate a virtual environment
+python -m venv .venv
 
-Initialize the environment file:
+# Windows
+source .venv/Scripts/activate
+# macOS / Linux
+source .venv/bin/activate
 
-   ```bash
-   # Windows
-   copy .env.example .env
-   # macOS/Linux
-   cp .env.example .env
-   ```
+# Install dependencies
+pip install -r requirements.txt
 
-### Configure `.env`
+# Copy the environment file
+cp .env.example .env   # macOS/Linux
+copy .env.example .env  # Windows
+```
 
-Open the `.env` file and fill in your credentials.
+#### Configure `.env`
 
-**If using Infisical (Recommended for security):**
-You only need to provide the Infisical connection details. The agent will fetch all other secrets from your Infisical
-project at runtime.
+**Using Infisical (Recommended):** Provide only the Infisical connection details secrets are fetched at runtime.
 
 ```env
 INFISICAL_CLIENT_ID=your_client_id
@@ -81,113 +87,126 @@ INFISICAL_CLIENT_SECRET=your_client_secret
 INFISICAL_PROJECT_ID=your_project_id
 ```
 
-**If NOT using Infisical:**
-Leave the Infisical fields blank and fill in the individual secrets directly in the `.env` file (Reddit, Gemini,
-Database, etc.).
+**Without Infisical:** Fill in individual secrets directly.
 
 ```env
 REDDIT_CLIENT_ID=your_reddit_id
 REDDIT_CLIENT_SECRET=your_reddit_secret
 GEMINI_API_KEY=your_gemini_key
 DATABASE_URL=sqlite:///database.db
-...
 ```
 
-### Run
+#### Run the Backend
 
-Run the background scheduler:
+```bash
+# Start the FastAPI server
+python server.py
 
-```cmd
+# Run the full pipeline once (manual)
+python run.py
+
+# Start the background scheduler
 python scheduler.py
 ```
 
-Run the full pipeline once manually:
+### 3. Frontend Setup
 
-```cmd
-python run.py
+Navigate to the frontend directory:
+
+```bash
+cd leema-frontend
 ```
 
-## Project Structure
+Install dependencies with Yarn (PnP is disabled uses standard `node_modules`):
 
-```
-Agent/
-├── scheduler.py                # Background scheduler (APScheduler)
-├── run.py                      # Manual entry point
-├── server.py                   # FastAPI server entry point
-│
-├── pipelines/              # Coordinate the data flow between services
-│   ├── scout_pipeline.py       # Discovery & validation (Scout Bot)
-│   ├── ingress_pipeline.py     # Targeted data collection
-│   ├── sentiment_pipeline.py   # Sentiment analysis
-│   ├── core_pipeline.py        # AI Curation (Gemini)
-│   └── egress_pipeline.py      # Data delivery (Notion/Email)
-│
-├── services/                   # Business logic
-│   ├── scout_bot_service.py    # Agentic scouting & ID staging
-│   ├── infisical_service.py    # Runtime secrets loading from Infisical
-│   ├── ingress_service.py      # Reddit data collection
-│   ├── reddit_service.py       # Scraping & storage pipeline coordinator
-│   ├── sentiment_service.py    # Sentiment analysis
-│   ├── core_service.py         # Curator Agent (Gemini)
-│   └── egress_service.py       # Email & Notion exporters
-│
-├── repositories/               # Data access layer (SQLAlchemy)
-│   ├── validated_post_repository.py
-│   ├── post_repository.py
-│   ├── comment_repository.py
-│   ├── sentiment_repository.py
-│   └── brief_repository.py
-│
-├── clients/                    # External API adapters
-│   ├── reddit_client.py
-│   └── gemini_client.py
-│
-├── database/                   # Models and DB initialization
-│   └── models.py
-│
-├── settings/
-│   └── settings.py             # Settings & env variable mapping
-│
-└── utils/
-    ├── logger.py               # Shared logger
-    └── helpers.py              # Shared utilities: serializers, Reddit fetchers,
-                                #   data integrity checks, text chunking,
-                                #   Notion block builders & email formatter
+```bash
+yarn install
 ```
 
-## Secrets Management
+Start the development server:
 
-Secrets are loaded dynamically at startup using `InfisicalSecretsService`. When the app initializes,
-`settings/settings.py` authenticates with Infisical and injects all project secrets into the environment before any
-constants are resolved.
+```bash
+yarn dev
+```
 
-The following secrets should be configured in your Infisical project:
+Build for production:
 
-| Secret                 | Description                           |
-|------------------------|---------------------------------------|
-| `REDDIT_CLIENT_ID`     | Reddit app client ID                  |
-| `REDDIT_CLIENT_SECRET` | Reddit app client secret              |
-| `REDDIT_USER_AGENT`    | Reddit API user agent string          |
-| `GEMINI_API_KEY`       | Google Gemini API key                 |
-| `NOTION_API_KEY`       | Notion integration token *(optional)* |
-| `NOTION_DB_ID`         | Notion database ID *(optional)*       |
-| `EMAIL_ADDRESS`        | Sender email address                  |
-| `EMAIL_APP_PASSWORD`   | Email app password                    |
-| `RECIPIENT_ADDRESS`    | Report recipient email                |
-| `DATABASE_URL`         | SQLAlchemy database connection URL    |
+```bash
+yarn build
+```
 
-## Features
+## Secrets Reference
 
-- Reddit ingestion and data collection
-- Sentiment analysis pipeline
-- Gemini-based Curator Agent
-- Notion sync (optional) and email notifications
-- Repository pattern (data access layer)
-- Dynamic secrets loading via Infisical
-- Egress helpers extracted to utils/helpers.py
+The following secrets should be configured in your Infisical project (or directly in `.env`):
 
-## Notes & Limitations
+| Secret | Description |
+|---|---|
+| `REDDIT_CLIENT_ID` | Reddit app client ID |
+| `REDDIT_CLIENT_SECRET` | Reddit app client secret |
+| `REDDIT_USER_AGENT` | Reddit API user agent string |
+| `GEMINI_API_KEY` | Google Gemini API key |
+| `NOTION_API_KEY` | Notion integration token *(optional)* |
+| `NOTION_DB_ID` | Notion database ID *(optional)* |
+| `EMAIL_ADDRESS` | Sender email address |
+| `EMAIL_APP_PASSWORD` | Email app password |
+| `RECIPIENT_ADDRESS` | Report recipient email |
+| `DATABASE_URL` | SQLAlchemy database connection URL |
 
-- Backend infrastructure only no UI
-- Focused exclusively on Reddit as a data source
-- LLM inference costs apply depending on Gemini usage tier
+---
+
+## Backend Structure
+
+```
+leema-backend/
+├── scheduler.py              # Background scheduler (APScheduler)
+├── run.py                    # Manual pipeline entry point
+├── server.py                 # FastAPI server entry point
+│
+├── pipelines/                # Coordinate data flow between services
+│   ├── scout_pipeline.py
+│   ├── ingress_pipeline.py
+│   ├── sentiment_pipeline.py
+│   ├── core_pipeline.py
+│   └── egress_pipeline.py
+│
+├── services/                 # Business logic
+│   ├── scout_bot_service.py
+│   ├── infisical_service.py
+│   ├── ingress_service.py
+│   ├── reddit_service.py
+│   ├── sentiment_service.py
+│   ├── core_service.py
+│   └── egress_service.py
+│
+├── repositories/             # Data access layer (SQLAlchemy)
+├── clients/                  # External API adapters (Reddit, Gemini)
+├── database/                 # Models and DB initialisation
+├── settings/                 # Settings & env variable mapping
+└── utils/                    # Shared logger and helpers
+```
+
+## Frontend Structure
+
+```
+leema-frontend/
+├── src/                      # Application source
+├── public/                   # Static assets
+├── index.html
+├── vite.config.ts
+├── tsconfig.json
+├── .yarnrc.yml               # Yarn Berry config (nodeLinker: node-modules)
+└── package.json
+```
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| AI Agent / Backend | Python, FastAPI, SQLAlchemy, APScheduler, VADER, Gemini |
+| Frontend | React 19, TypeScript, Vite, Tailwind CSS v4 |
+| Package Manager (FE) | Yarn 4 (Berry, no PnP) |
+| Secrets | Infisical |
+| Data Sources | Reddit API |
+| Exports | Notion, Email |
