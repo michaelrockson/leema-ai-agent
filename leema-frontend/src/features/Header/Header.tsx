@@ -1,6 +1,7 @@
 import {Button} from "@/components/ui/button.tsx";
 import {Settings} from "lucide-react";
 import DrawerStore from "@/components/DrawerStore.tsx";
+import SettingsForm from "@/features/Settings/components/SettingsForm.tsx";
 
 export default function Header() {
     return (
@@ -18,8 +19,7 @@ export default function Header() {
                     button: Button,
                     ButtonLabel: <Settings className="size-5"/>,
                     drawerTitle: "Settings",
-                    drawerDescription: "Manage your account settings",
-                    drawerContent: null,
+                    drawerContent: <SettingsForm />,
                     drawerSaveButtonLabel: "Save Changes",
                     drawerCancelButtonLabel: "Cancel"
                 }} />
