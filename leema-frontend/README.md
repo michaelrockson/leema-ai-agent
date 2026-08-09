@@ -1,75 +1,70 @@
-# React + TypeScript + Vite
+# Leema Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The dashboard UI for the Leema AI Agent built with React 19, TypeScript, Vite and Tailwind CSS v4.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Tool | Version | Purpose |
+|---|---|---|
+| React | 19 | UI framework |
+| TypeScript | 6 | Type safety |
+| Vite | 8 | Build tool & dev server |
+| Tailwind CSS | v4 | Utility-first styling (via `@tailwindcss/vite`) |
+| Base UI | 1.7 | Unstyled, accessible UI primitives |
+| Lucide React | latest | Icon library |
+| CVA + clsx + tailwind-merge | — | Class variant & conditional styling utilities |
+| Yarn | 4.9.2 (Berry, no PnP) | Package manager |
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js 18+
+- Yarn 4+ install via `npm install -g yarn` or enable via Corepack: `corepack enable`
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Install dependencies:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+yarn install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Start the development server:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+yarn dev
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+The app will be available at `http://localhost:5173` by default.
+
+## Available Scripts
+
+| Command | Description |
+|---|---|
+| `yarn dev` | Start the Vite dev server with HMR |
+| `yarn build` | Type-check and build for production |
+| `yarn preview` | Locally preview the production build |
+| `yarn lint` | Run ESLint across all source files |
+
+## Project Structure
 
 ```
+leema-frontend/
+├── src/                  # Application source code
+├── public/               # Static assets served as-is
+├── index.html            # HTML entry point
+├── vite.config.ts        # Vite config (Tailwind plugin, @ alias)
+├── tsconfig.json         # Root TypeScript config
+├── tsconfig.app.json     # App-specific TS config
+├── tsconfig.node.json    # Node/tooling TS config
+├── eslint.config.js      # ESLint flat config
+├── components.json       # UI component registry config
+├── .yarnrc.yml           # Yarn Berry config nodeLinker: node-modules (no PnP)
+└── package.json
+```
+
+## Notes
+
+- **Package manager**: Yarn Berry (v4) is used with `nodeLinker: node-modules` Plug'n'Play is intentionally disabled for broad tooling compatibility.
+- **Path alias**: `@` resolves to `./src`, configured in both `vite.config.ts` and `tsconfig.app.json`.
+- **Tailwind CSS v4** is integrated directly as a Vite plugin via `@tailwindcss/vite` no `postcss.config.js` needed.
