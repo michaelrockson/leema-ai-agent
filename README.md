@@ -1,4 +1,4 @@
-# Leema
+# Leema Research Platform
 
 Leema is an AI research agent that discovers, validates and prioritizes customer problems from online conversations, helping founders and businesses build products people actually need. It runs a multi-stage pipeline that scouts Reddit for pain points, validates signal strength and packages recurring problems into actionable briefs.
 
@@ -34,7 +34,6 @@ Set up the backend:
 cd leema-backend
 
 # For automatic setup run this script:
-
 chmod +x ./setup.sh
 ./setup.sh
 
