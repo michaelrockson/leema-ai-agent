@@ -59,7 +59,7 @@ yarn install
 yarn dev
 ```
 
-End with an example of getting some data out of the system, e.g. running the pipeline manually:
+Getting some data out of the system, e.g. running the pipeline manually:
 
 ```
 python run.py
